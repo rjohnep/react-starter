@@ -13,7 +13,6 @@ module.exports = require('./webpack.base.babel')({
   // Add hot reloading in development
   entry: [
     require.resolve('react-app-polyfill/ie11'),
-    'webpack-hot-middleware/client?reload=true',
     path.join(process.cwd(), 'app/app.tsx') // Start with js/app.tsx
   ],
 
@@ -48,5 +47,12 @@ module.exports = require('./webpack.base.babel')({
 
   performance: {
     hints: false
+  },
+
+  devServer: {
+    contentBase: path.join(__dirname, 'build'),
+    compress: true,
+    port: 9000,
+    hot: true
   }
 });
