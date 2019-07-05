@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = options => ({
   mode: options.mode,
@@ -58,7 +59,12 @@ module.exports = options => ({
   resolve: {
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js', '.ts', '.tsx'],
-    mainFields: ['browser', 'jsnext:main', 'main']
+    mainFields: ['browser', 'jsnext:main', 'main'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: path.resolve(process.cwd(), 'tsconfig.json')
+      })
+    ]
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window

@@ -53,6 +53,7 @@ module.exports = require('./webpack.base.babel')({
     contentBase: path.join(__dirname, 'build'),
     compress: true,
     port: 9000,
-    hot: true
+    hot: true,
+    historyApiFallback: true
   }
 });
